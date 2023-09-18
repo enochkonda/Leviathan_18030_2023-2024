@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.opencv.core.Mat;
@@ -10,20 +12,13 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous (name = "CameraTest", group = "trollbot")
+@TeleOp (name = "CameraTest", group = "trollbot")
 public class Vision extends LinearOpMode {
 
-    OpenCvCamera webcam = null;
+    OpenCvCamera webcam;
+    HardwareMap maps;
 
-    class testPipeline extends OpenCvPipeline {
-        @Override
-        public Mat processFrame(Mat input) {
-            return input;
-        }
-    }
-
-    @Override
-    public void runOpMode() {
+    public Vision (HardwareMap hw) {
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webcam");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
@@ -42,5 +37,17 @@ public class Vision extends LinearOpMode {
                 }
             });
         }
+    }
+
+    class testPipeline extends OpenCvPipeline {
+        @Override
+        public Mat processFrame(Mat input) {
+            return input;
+        }
+    }
+
+    @Override
+    public void runOpMode() {
+
     }
 }
