@@ -12,7 +12,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@TeleOp (name = "CameraTest", group = "trollbot")
+@Autonomous (name = "CameraTest", group = "trollbot")
 public class Vision extends LinearOpMode {
 
     OpenCvCamera webcam;
