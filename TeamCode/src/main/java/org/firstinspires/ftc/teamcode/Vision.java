@@ -12,20 +12,24 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous (name = "CameraTest", group = "trollbot")
+@TeleOp (name = "CameraTest", group = "trollbot")
 public class Vision extends LinearOpMode {
 
-    OpenCvCamera webcam;
-    HardwareMap maps;
+    @Override
+    public void runOpMode() throws InterruptedException {
 
-    public Vision (HardwareMap hw) {
+        OpenCvCamera webcam;
+        HardwareMap hw;
+
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webcam");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        webcam.setPipeline(new testPipeline());
+        //webcam.setPipeline(new testPipeline());
 
-        while (opModeInInit()) {
+        waitForStart();
+
+        while (opModeIsActive()) {
             webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
                 public void onOpened() {
                     webcam.startStreaming(640, 360, OpenCvCameraRotation.UPRIGHT);
@@ -37,17 +41,11 @@ public class Vision extends LinearOpMode {
                 }
             });
         }
-    }
-
-    class testPipeline extends OpenCvPipeline {
-        @Override
-        public Mat processFrame(Mat input) {
-            return input;
+        class testPipeline extends OpenCvPipeline {
+            @Override
+            public Mat processFrame(Mat input) {
+                return input;
+            }
         }
-    }
-
-    @Override
-    public void runOpMode() {
-
     }
 }
