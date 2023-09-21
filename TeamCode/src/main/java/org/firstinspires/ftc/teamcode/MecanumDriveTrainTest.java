@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
 public class MecanumDriveTrainTest {
+
     HardwareMap hwMap;
     DcMotor frontLeft;
     DcMotor frontRight;
@@ -16,6 +17,7 @@ public class MecanumDriveTrainTest {
     DcMotor rearRight;
     DcMotor lift;
     Servo outtake;
+    IMU imu;
 
     public void init (HardwareMap hwMap) {
         frontLeft = hwMap.get(DcMotor.class, "frontLeft");
@@ -33,11 +35,9 @@ public class MecanumDriveTrainTest {
         setL(lift);
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        // Retrieve the IMU from the hardware map
-        IMU imu = hwMap.get(IMU.class, "imu");
-        // Adjust the orientation parameters to match your robot
+        imu = hwMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.LogoFacingDirection.UP, // FIXXXXX
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
@@ -54,7 +54,4 @@ public class MecanumDriveTrainTest {
         motor.setDirection(DcMotor.Direction.FORWARD);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
-
-
-
 }
