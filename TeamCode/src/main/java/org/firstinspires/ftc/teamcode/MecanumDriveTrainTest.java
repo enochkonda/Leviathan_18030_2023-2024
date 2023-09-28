@@ -38,7 +38,7 @@ public class MecanumDriveTrainTest {
 
         imu = hwMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP, // configure properly
+                RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD, // configure properly
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
