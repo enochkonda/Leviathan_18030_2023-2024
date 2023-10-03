@@ -25,7 +25,7 @@ public class Vision extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        //webcam.setPipeline(new testPipeline());
+        webcam.setPipeline(new OpenCVdemo());
 
         waitForStart();
 
