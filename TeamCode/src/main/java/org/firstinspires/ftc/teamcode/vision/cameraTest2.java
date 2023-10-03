@@ -21,12 +21,13 @@ import java.util.ArrayList;
 @Autonomous (name = "cameraTest2", group = "trollbot")
 
 public class cameraTest2 extends OpMode {
-    static final int STREAM_WIDTH = 1920; // modify for your camera
-    static final int STREAM_HEIGHT = 1080; // modify for your camera
+    static final int STREAM_WIDTH = 320; // modify for your camera
+    static final int STREAM_HEIGHT = 240; // modify for your camera
     OpenCvWebcam webcam;
     SamplePipeline pipeline;
     @Override
     public void init() {
+        telemetry.addLine("Testing?");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         WebcamName webcamName = null;
         webcamName = hardwareMap.get(WebcamName.class, "WebcamMain"); // put your camera's name here
@@ -65,8 +66,8 @@ class SamplePipeline extends OpenCvPipeline {
     Mat RectA_Y = new Mat();
     int avg;
     int avgA;
-    static final int STREAM_WIDTH = 1920; // modify for your camera
-    static final int STREAM_HEIGHT = 1080; // modify for your camera
+    static final int STREAM_WIDTH = 320; // modify for your camera
+    static final int STREAM_HEIGHT = 240; // modify for your camera
 
 
     static final int WidthRectA = 130;
